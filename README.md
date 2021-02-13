@@ -18,7 +18,7 @@ The **action space** are the following 4 directive that the agent can take at ea
 - **`2`** - turn left.
 - **`3`** - turn right.
 
-The agent has to learn given the information provided  by its vector state and its experience of previous steps which actions are the best to take. The agent is considered to be trained and the environment solved when it gets an average score al least of +13 over 100 episodes.
+The agent has to learn what actions are the best to take, given the information provided  by its vector state and its experience of previous steps. The agent is considered to be trained and the environment solved when it gets an average score al least of +13 over 100 episodes.
 
 ### Setting the environment up
 
@@ -27,7 +27,7 @@ The agent has to learn given the information provided  by its vector state and i
 
 ```bash
 conda create --name dqn_bca python=3.6
-source activate drlnd
+source activate dqn_bca
 ```
 * For Windows:
 ```bash
@@ -61,7 +61,7 @@ pip install .
 4. Create an IPython kernel for the drlnd environment:
 
 ```
-python -m ipykernel install --user --name dqn_bc --display-name "dqn_bc"
+python -m ipykernel install --user --name dqn_bca --display-name "dqn_bca."
 ```
 5. Download the environment from one of the links below.  You need only select the environment that matches your operating system:
     - Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux.zip)
