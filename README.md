@@ -32,7 +32,7 @@ source activate dqn_bca
 * For Windows:
 ```bash
 conda create --name dqn_bca python=3.6 
-activate drlnd
+activate dqn_bca
 ```
 
 2. Perform a minimal installation of OpenAI gym:
