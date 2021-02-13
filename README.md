@@ -2,52 +2,82 @@
 
 [image1]: https://user-images.githubusercontent.com/10624937/42135619-d90f2f28-7d12-11e8-8823-82b970a54d7e.gif "Trained Agent"
 
-# Project 1: Navigation
+# P1: Navigation Project - Banana Collector
 
 ### Introduction
 
-For this project, you will train an agent to navigate (and collect bananas!) in a large, square world.  
+This repository shows how to train an agent to navigate a large square world and collect yellow bananas as many as it can, avoiding the blue bananas which might be decomposed or poisoned (that's not a normal color for a banana, right?).
 
-A reward of +1 is provided for collecting a yellow banana, and a reward of -1 is provided for collecting a blue banana.  Thus, the goal of your agent is to collect as many yellow bananas as possible while avoiding blue bananas.  
+A positive reward of +1 is granted for collecting yellow bananas and a negative reward or punish of -1 is given for collecting blue bananas.
+The goal of the agent is to maximize its rewards by collecting yellow bananas.
 
-The state space has 37 dimensions and contains the agent's velocity, along with ray-based perception of objects around agent's forward direction.  Given this information, the agent has to learn how to best select actions.  Four discrete actions are available, corresponding to:
+The **state space** has 37 dimensions and contains the agent's velocity, along with ray-based perception of objects around agent's forward direction.  
+The **action space** are the following 4 directive that the agent can take at each step:
 - **`0`** - move forward.
 - **`1`** - move backward.
 - **`2`** - turn left.
 - **`3`** - turn right.
 
-The task is episodic, and in order to solve the environment, your agent must get an average score of +13 over 100 consecutive episodes.
+The agent has to learn given the information provided  by its vector state and its experience of previous steps which actions are the best to take. The agent is considered to be trained and the environment solved when it gets an average score al least of +13 over 100 episodes.
 
-### Getting Started
+### Setting the environment up
 
-1. Download the environment from one of the links below.  You need only select the environment that matches your operating system:
+1. To run the environment we need a specific version of ptyhon so you are ancouraged to set a conda environment. Here the env was called dqn_bca (deep q network banana collector agent):
+* For Linux or Mac:
+
+```bash
+conda create --name dqn_bca python=3.6
+source activate drlnd
+```
+* For Windows:
+```bash
+conda create --name dqn_bca python=3.6 
+activate drlnd
+```
+
+2. Perform a minimal installation of OpenAI gym:
+
+*  Run the following line to perform minimal installation
+```
+git clone https://github.com/openai/gym.git
+cd gym
+pip install -e .
+```
+* Install the **classic control** and **box2** environments by runnning:
+```
+pip install -e '.[classic_control]'
+pip install -e '.[box2d]'
+```
+
+3. Clone or download this repository:
+```
+git https://github.com/chuquikun/Navigation_Project-Banana_Collector.git
+```
+* Move to the folder `python/ ` and install dependencies within:
+```
+cd python
+pip install .
+```
+4. Create an IPython kernel for the drlnd environment:
+
+```
+python -m ipykernel install --user --name dqn_bc --display-name "dqn_bc"
+```
+5. Download the environment from one of the links below.  You need only select the environment that matches your operating system:
     - Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux.zip)
     - Mac OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana.app.zip)
     - Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86.zip)
     - Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86_64.zip)
     
     (_For Windows users_) Check out [this link](https://support.microsoft.com/en-us/help/827218/how-to-determine-whether-a-computer-is-running-a-32-bit-version-or-64) if you need help with determining if your computer is running a 32-bit version or 64-bit version of the Windows operating system.
+    
+6. Place the file in the the roor of this repository and unzip (or decompress) the file. 
 
-    (_For AWS_) If you'd like to train the agent on AWS (and have not [enabled a virtual screen](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md)), then please use [this link](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux_NoVis.zip) to obtain the environment.
+7. Running the notebooks 
 
-2. Place the file in the DRLND GitHub repository, in the `p1_navigation/` folder, and unzip (or decompress) the file. 
-
-### Instructions
-
-Follow the instructions in `Navigation.ipynb` to get started with training your own agent!  
-
-### (Optional) Challenge: Learning from Pixels
-
-After you have successfully completed the project, if you're looking for an additional challenge, you have come to the right place!  In the project, your agent learned from information such as its velocity, along with ray-based perception of objects around its forward direction.  A more challenging task would be to learn directly from pixels!
-
-To solve this harder task, you'll need to download a new Unity environment.  This environment is almost identical to the project environment, where the only difference is that the state is an 84 x 84 RGB image, corresponding to the agent's first-person view.  (**Note**: Udacity students should not submit a project with this new environment.)
-
-You need only select the environment that matches your operating system:
-- Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Linux.zip)
-- Mac OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana.app.zip)
-- Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Windows_x86.zip)
-- Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Windows_x86_64.zip)
-
-Then, place the file in the `p1_navigation/` folder in the DRLND GitHub repository, and unzip (or decompress) the file.  Next, open `Navigation_Pixels.ipynb` and follow the instructions to learn how to use the Python API to control the agent.
-
-(_For AWS_) If you'd like to train the agent on AWS, you must follow the instructions to [set up X Server](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md), and then download the environment for the **Linux** operating system above.
+To launch the notebooks run in the root of this directory:
+```
+jupyter notebook
+```
+Finally select and double-click the notebook you want to run.
+Before running code in any notebook, change the kernel to match the dqn_bc environment by using the drop-down Kernel menu.
