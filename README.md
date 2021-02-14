@@ -1,10 +1,10 @@
-[//]: # (Image References)
-
-[image1]: https://user-images.githubusercontent.com/10624937/42135619-d90f2f28-7d12-11e8-8823-82b970a54d7e.gif "Trained Agent"
+[image1]: https://github.com/chuquikun/Navigation_Project-Banana_Collector/tree/main/images/trained_dqn_agent.gif "DQN Trained Agent"
 
 # P1: Navigation Project - Banana Collector
 
 ### Introduction
+
+![trained-agent-with-simple-dqn](image1)
 
 This repository shows how to train an agent to navigate a large square world and collect yellow bananas as many as it can, avoiding the blue bananas which might be decomposed or poisoned (that's not a normal color for a banana, right?).
 
