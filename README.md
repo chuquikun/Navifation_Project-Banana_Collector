@@ -1,3 +1,5 @@
+[//]: # (Image References)
+
 [image1]: https://github.com/chuquikun/Navigation_Project-Banana_Collector/tree/main/images/trained_dqn_agent.gif "DQN Trained Agent"
 
 # P1: Navigation Project - Banana Collector
@@ -27,7 +29,7 @@ The agent has to learn what actions are the best to take, given the information 
 
 ```bash
 conda create --name dqn_bca python=3.6
-source activate dqn_bca
+conda activate dqn_bca
 ```
 * For Windows:
 ```bash
