@@ -2,7 +2,7 @@
 <p align="center">
 <img align="center" src="https://github.com/chuquikun/Navigation_Project-Banana_Collector/blob/main/images/trained_dqn_agent.gif">
 </p>
-<p align="center">xample of a DQN Tranied Agent</p>
+<p align="center">Example of a DQN Tranied Agent</p>
 
 ### Introduction
 
