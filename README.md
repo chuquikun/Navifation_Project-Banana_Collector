@@ -58,7 +58,7 @@ git https://github.com/chuquikun/Navigation_Project-Banana_Collector.git
 cd python
 pip install .
 ```
-4. Create an IPython kernel for the drlnd environment:
+4. Create an IPython kernel for the dqn_bca environment:
 
 ```
 python -m ipykernel install --user --name dqn_bca --display-name "dqn_bca."
@@ -70,6 +70,9 @@ python -m ipykernel install --user --name dqn_bca --display-name "dqn_bca."
     - Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86_64.zip)
     
     (_For Windows users_) Check out [this link](https://support.microsoft.com/en-us/help/827218/how-to-determine-whether-a-computer-is-running-a-32-bit-version-or-64) if you need help with determining if your computer is running a 32-bit version or 64-bit version of the Windows operating system.
+    
+    Alternatively you can download a headless version of the Linux environment which is very convenient to train the agent without launch the graphic interface.
+    - Linux No Visualization:[click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux_NoVis.zip)
     
 6. Place the file in the the roor of this repository and unzip (or decompress) the file. 
 
