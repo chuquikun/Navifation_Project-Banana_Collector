@@ -20,7 +20,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 class Agent():
     """Interacts with and learns from the environment."""
 
-    def __init__(self, state_size, action_size, hidden_layers, p=0,seed=0):
+    def __init__(self, state_size, action_size, hidden_layers, double_dqn = False ,p_drop=0,seed=0):
         """Initialize an Agent object.
         
         Params
@@ -32,10 +32,11 @@ class Agent():
         self.state_size = state_size
         self.action_size = action_size
         self.seed = random.seed(seed)
+        self.learn = self.double_dqn_learn if double_dqn else self.dqn_learn
 
         # Q-Network
-        self.qnetwork_local = QNetwork(state_size, action_size, hidden_layers, p, seed).to(device)
-        self.qnetwork_target = QNetwork(state_size, action_size, hidden_layers, p, seed).to(device)
+        self.qnetwork_local = QNetwork(state_size, action_size, hidden_layers, p_drop, seed).to(device)
+        self.qnetwork_target = QNetwork(state_size, action_size, hidden_layers, p_drop, seed).to(device)
         self.optimizer = optim.Adam(self.qnetwork_local.parameters(), lr=LR)
 
         # Replay memory
@@ -75,7 +76,7 @@ class Agent():
         else:
             return random.choice(np.arange(self.action_size))
 
-    def learn(self, experiences, gamma):
+    def dqn_learn(self, experiences, gamma):
         """Update value parameters using given batch of experience tuples.
 
         Params
@@ -101,7 +102,38 @@ class Agent():
         self.optimizer.step()
 
         # ------------------- update target network ------------------- #
-        self.soft_update(self.qnetwork_local, self.qnetwork_target, TAU)                     
+        self.soft_update(self.qnetwork_local, self.qnetwork_target, TAU)     
+        
+    def double_dqn_learn(self, experiences, gamma):
+        """Update value parameters using given batch of experience tuples.
+           And follows de Double Q-Network approach
+
+        Params
+        ======
+            experiences (Tuple[torch.Tensor]): tuple of (s, a, r, s', done) tuples 
+            gamma (float): discount factor
+        """
+        states, actions, rewards, next_states, dones = experiences
+
+        # Get actions that yield max predicted Q values (for next states)  using the local model
+        best_actions = self.qnetwork_local(next_states).detach().max(1)[1].unsqueeze(1)
+        # Get max Q values (for next states ) usin target model and keep the values for the best action
+        Q_targets_next = self.qnetwork_target(next_states).gather(1, best_actions)
+        # Compute Q targets for current states 
+        Q_targets = rewards + (gamma * Q_targets_next * (1 - dones))
+
+        # Get expected Q values from local model
+        Q_expected = self.qnetwork_local(states).gather(1, actions)
+
+        # Compute loss
+        loss = F.mse_loss(Q_expected, Q_targets)
+        # Minimize the loss
+        self.optimizer.zero_grad()
+        loss.backward()
+        self.optimizer.step()
+
+        # ------------------- update target network ------------------- #
+        self.soft_update(self.qnetwork_local, self.qnetwork_target, TAU)     
 
     def soft_update(self, local_model, target_model, tau):
         """Soft update model parameters.

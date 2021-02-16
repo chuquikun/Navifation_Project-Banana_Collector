@@ -5,7 +5,7 @@ import torch.nn.functional as F
 class QNetwork(nn.Module):
     """Actor (Policy) Model."""
 
-    def __init__(self, state_size, action_size, hidden_layers, p, seed):
+    def __init__(self, state_size, action_size, hidden_layers, p_drop, seed):
         """Initialize parameters and build model.
         Params
         ======
@@ -28,7 +28,7 @@ class QNetwork(nn.Module):
         # Add output layer
         self.output = nn.Linear(hidden_layers[-1], action_size)
         # Add the probability for a node to be dropped at each layer
-        self.dropout = nn.Dropout(p=p)
+        self.dropout = nn.Dropout(p=p_drop)
     
     def forward(self, x):
         for linear in self.hl:
