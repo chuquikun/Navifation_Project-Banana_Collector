@@ -84,4 +84,15 @@ To launch the notebooks run in the root of this directory:
 jupyter notebook
 ```
 Finally select and double-click the notebook you want to run.
-Before running code in any notebook, change the kernel to match the dqn_bc environment by using the drop-down Kernel menu.
+Before running code in any notebook, change the kernel to match the dqn_bca environment by using the drop-down Kernel menu.
+
+### Instructions
+
+This repository contains 4 main files:
+
+- **model.py** contains the code to generate a neural network to model a Q value-action function.
+- **dqn_agent.py** decribes the Agent class and contains how the agent acts and learn using DQN or Double DQN.
+- **Navigation.ipynb** this is the notebook you may want to note to train a new agent or modified the existing ones.
+- **Run_Trained_Agent.ipynb** this is the notebook that you need to run if you want to see the performance of an already trained agent.
+
+The file Report.md contains an a briefly explanation of the algorithms used to train the agent.
