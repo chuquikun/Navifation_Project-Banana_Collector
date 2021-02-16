@@ -1,12 +1,10 @@
-[//]: # (Image References)
-
-[image1]: https://github.com/chuquikun/Navigation_Project-Banana_Collector/tree/main/images/trained_dqn_agent.gif "DQN Trained Agent"
-
 # P1: Navigation Project - Banana Collector
+<p align="center">
+<img align="center" src="https://github.com/chuquikun/Navigation_Project-Banana_Collector/blob/main/images/trained_dqn_agent.gif">
+</p>
+<p align="center">Example of a DQN Tranied Agent</p>
 
 ### Introduction
-
-![trained-agent-with-simple-dqn](image1)
 
 This repository shows how to train an agent to navigate a large square world and collect yellow bananas as many as it can, avoiding the blue bananas which might be decomposed or poisoned (that's not a normal color for a banana, right?).
 
@@ -21,6 +19,7 @@ The **action space** are the following 4 directive that the agent can take at ea
 - **`3`** - turn right.
 
 The agent has to learn what actions are the best to take, given the information provided  by its vector state and its experience of previous steps. The agent is considered to be trained and the environment solved when it gets an average score al least of +13 over 100 episodes.
+
 
 ### Setting the environment up
 
